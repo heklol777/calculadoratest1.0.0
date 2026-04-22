@@ -1,33 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora F.E.A</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-<div class="calculadora">
-    <div class="pantalla">0</div>
-    <button id="c">c</button>
-    <button id="borrar">←</button>
-    <button>/</button>
-    <button>*</button>
-    <button>7</button>
-    <button>8</button>
-    <button>9</button>
-    <button>-</button>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <button>+</button>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button id="igual">=</button>
-    <button id="cero">0</button>
-    <button>.</button>
+
+<div class="container">
+
+    <!-- ================= NORMAL ================= -->
+    <div id="seccion-normal">
+        <div class="pantalla" id="pantalla">0</div>
+
+        <div class="grid-normal">
+            <div class="menu-wrapper">
+                <button id="btn-modo-m">M</button>
+
+                <div id="menu-modos" class="menu-flotante">
+                    <div class="item-menu">Fracciones</div>
+                    <div class="item-menu" id="abrir-radicales">Radicales</div>
+                    <div class="item-menu" id="trigger-matrices">Matrices ▸</div>
+
+                    <div id="submenu-matrices" class="submenu-flotante">
+                        <div class="item-menu" data-op="suma">Suma</div>
+                        <div class="item-menu" data-op="resta">Resta</div>
+                        <div class="item-menu" data-op="multiplicacion">Multiplicación</div>
+                        <div class="item-menu" data-op="transpuesta">Transpuesta</div>
+                        <div class="item-menu" data-op="potencia">Potencia</div>
+                        <div class="item-menu" data-op="determinante">Determinante</div>
+                        <div class="item-menu" data-op="inversa">Inversa</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-calc" id="c">c</button>
+            <button class="btn-calc" id="borrar">←</button>
+            <button class="btn-calc">/</button>
+
+            <button class="btn-calc">7</button>
+            <button class="btn-calc">8</button>
+            <button class="btn-calc">9</button>
+            <button class="btn-calc">*</button>
+
+            <button class="btn-calc">4</button>
+            <button class="btn-calc">5</button>
+            <button class="btn-calc">6</button>
+            <button class="btn-calc">-</button>
+
+            <button class="btn-calc">1</button>
+            <button class="btn-calc">2</button>
+            <button class="btn-calc">3</button>
+            <button class="btn-calc">+</button>
+
+            <button class="btn-calc" id="cero">0</button>
+            <button class="btn-calc">.</button>
+            <button class="btn-calc" id="igual">=</button>
+        </div>
+    </div>
+
+    <!-- ================= MATRICES ================= -->
+    <div id="seccion-matrices" style="display:none;">
+        <button id="btn-volver" class="btn-volver">← Volver</button>
+
+        <h2 id="titulo-operacion" style="color:#00d2ff;text-align:center;margin-bottom:10px;">Matrices</h2>
+
+        <div id="selector-potencia" style="display:none;text-align:center;margin-bottom:10px;">
+            <label style="color:white;">Potencia:</label>
+            <select id="grado-potencia">
+                <option value="2">²</option>
+                <option value="3">³</option>
+                <option value="4">⁴</option>
+            </select>
+        </div>
+
+        <div class="matrix-container">
+            <div class="matrix-box">
+                <div id="matrixA" class="matrix-grid"></div>
+                <div class="matrix-inputs">
+                    <input type="number" id="rowsA" value="3"> x
+                    <input type="number" id="colsA" value="3">
+                    <button onclick="generateMatrixInputs('A')">Ok</button>
+                </div>
+            </div>
+
+            <div class="matrix-box" id="box-matriz-b">
+                <div id="matrixB" class="matrix-grid"></div>
+                <div class="matrix-inputs">
+                    <input type="number" id="rowsB" value="3"> x
+                    <input type="number" id="colsB" value="3">
+                    <button onclick="generateMatrixInputs('B')">Ok</button>
+                </div>
+            </div>
+        </div>
+
+        <button id="btn-ejecutar-op" class="btn-igual-matriz">=</button>
+        <div id="resultMatrix" class="matrix-grid"></div>
+    </div>
+
+    <!-- ================= RADICALES ================= -->
+    <div id="seccion-radicales" style="display:none;">
+        <button id="btn-volver-radical" class="btn-volver">← Volver</button>
+        <h2 style="color:#00d2ff;text-align:center;margin-bottom:10px;">Radicales</h2>
+
+        <div class="matrix-box">
+            <div class="pantalla" id="pantalla-radical">0</div>
+            <input type="number" id="input-radical" placeholder="Ingrese número">
+            <button id="btn-calcular-radical" class="btn-igual-matriz">Calcular √</button>
+        </div>
+    </div>
+
 </div>
 
 <script src="script.js"></script>
