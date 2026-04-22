@@ -1,65 +1,172 @@
-* {
- margin: 0;
- padding: 0;
- box-sizing: border-box; 
- font-family: 'system-ui';
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 
 body {
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: center;
     min-height: 100vh;
-    background-color: black;
-    display: grid;
-    place-items: center;
-
+    align-items: center;
 }
 
-.calculadora {
-    background-color: #48bfff;
-    color: white;
-    width: 350px;
-    max-width: 100%;
-    padding: 1.5rem;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .5rem;
-
+.container {
+    background-color: #16213e;
+    padding: 25px;
+    border-radius: 20px;
+    width: 380px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
 }
 
 .pantalla {
-    grid-column: 1 / 5;
-    background-color: #232323;
-    padding: 1.5rem;
-    font-size: 2rem;
+    background-color: #0f3460;
+    color: #4ecca3;
+    font-size: 2.8rem;
+    padding: 20px;
     text-align: right;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    font-weight: bold;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #e94560;
+    min-height: 80px;
 }
-button{
-    background-color: #006a70;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.grid-normal {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* MENÚS FLOTANTES */
+.menu-wrapper { position: relative; width: 100%; height: 100%; }
+
+#btn-modo-m {
+    width: 100%; height: 100%;
+    background-color: #00d2ff !important;
+    color: #1a1a2e !important;
+    font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.menu-flotante, .submenu-flotante {
+    position: absolute;
+    background: #1b1b2f;
+    border: 2px solid #00d2ff;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.menu-flotante { top: 0; left: -165px; width: 155px; }
+.submenu-flotante { top: 70px; left: -160px; width: 150px; border-color: #4ecca3; }
+
+.menu-flotante.show, .submenu-flotante.show { display: flex; }
+
+.item-menu {
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+    border-bottom: 1px solid #252545;
+}
+.item-menu:hover { background: #00d2ff; color: #1a1a2e; }
+
+/* BOTONES */
+button {
+    padding: 18px;
+    border-radius: 10px;
     border: none;
-    transition: .3s ease;
-
-
+    background-color: #e94560;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
-button:hover {
-    transform: scale(1.05);
+#cero { grid-column: span 2; }
 
+/* DISEÑO DE MATRICES */
+.matrix-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
-#cero {
-    grid-column: span 2;
 
+.matrix-box {
+    background: #0f3460;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
 }
 
-#igual {
-    grid-row: span 2;
+.matrix-grid {
+    display: grid;
+    gap: 8px;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* INPUTS DE MATRIZ (ARREGLADOS) */
+.matrix-grid input{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background: #1a1a2e;
+    color: #4ecca3;
+    border: 2px solid #00d2ff;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* BOTÓN IGUAL MATRIZ */
+.btn-igual-matriz {
+    width: 100%;
+    margin: 15px 0;
+    background: #4ecca3;
+    color: #1a1a2e;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+/* BOTÓN VOLVER */
+.btn-volver {
+    background: #555;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* ===== RESULTADO DE MATRIZ (NUEVO Y CORREGIDO) ===== */
+#resultMatrix{
+    margin-top: 20px;
+    display: grid;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Cada número del resultado */
+.matrix-result{
+    width: 50px;
+    height: 50px;
+    background: #1a1a2e;
+    border: 2px solid #4ecca3;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #4ecca3;
+    box-shadow: 0 0 10px rgba(78,204,163,0.5);
+}
+
+/* Título automático del resultado */
+#resultMatrix::before{
+    content: "Resultado";
+    color: #00d2ff;
+    font-weight: bold;
+    margin-bottom: 5px;
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 18px;
 }
